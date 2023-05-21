@@ -7,8 +7,8 @@ pub interface IValidator {
 	validate() !
 }
 
-// validate
-fn validate[T](data &T) ?[]IError {
+// validate data
+pub fn validate[T](data &T) ?[]IError {
 	mut errs := []IError{}
 	mut validators := []IValidator{}
 

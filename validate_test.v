@@ -19,5 +19,6 @@ fn test_test() {
 	errs := validate[Test](test)
 	if errs != none {
 		println(errs?)
+		// [Value is invalid., Value must be no greater than 78., content Value cannot be blank., Value must be a number., This value is not a valid URL.]
 	}
 }
