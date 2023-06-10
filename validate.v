@@ -7,6 +7,23 @@ pub interface IValidator {
 	validate() !
 }
 
+// [head]
+// pub struct Validators {
+// mut:
+// 	validators []IValidator
+// }
+//
+// pub fn new_validators() &Validators {
+// 	return &Validators{}
+// }
+//
+// pub fn register_validator[T](validator IValidator) {
+// 	mut validator_arr := validators.validators
+// 	validator_arr.validators << validator
+// }
+//
+// const validators = new_validators()
+
 // validate data
 pub fn validate[T](data &T) ?[]IError {
 	mut errs := []IError{}
@@ -79,7 +96,9 @@ pub fn validate[T](data &T) ?[]IError {
 							data: unsafe { data }
 						})
 					}
-					else {}
+					else {
+						// auto find
+					}
 				}
 			}
 		}

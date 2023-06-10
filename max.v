@@ -21,8 +21,24 @@ fn (m Max[T]) validate() ! {
 				block = m.data.$(field.name).len > check_value
 			} $else $if field.typ is int {
 				block = m.data.$(field.name) > check_value
-			} $else $if field.typ is u32 {
+			} $else $if field.typ is i8 {
+				block = m.data.$(field.name) > check_value
+			} $else $if field.typ is i16 {
+				block = m.data.$(field.name).i16() > check_value
+			} $else $if field.typ is i32 {
 				block = m.data.$(field.name).int() > check_value
+			} $else $if field.typ is i64 {
+				block = m.data.$(field.name).i64() > check_value
+			} $else $if field.typ is u8 {
+				block = m.data.$(field.name).u8() > check_value
+			} $else $if field.typ is u16 {
+				block = m.data.$(field.name).u16() > check_value
+			} $else $if field.typ is u32 {
+				block = m.data.$(field.name).u32() > check_value
+			} $else $if field.typ is u64 {
+				block = m.data.$(field.name).u64() > check_value
+			} $else {
+				return error('max no support ${field.name}:${field.typ}')
 			}
 		}
 	}

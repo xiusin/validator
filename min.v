@@ -9,7 +9,7 @@ pub mut:
 }
 
 fn (m Min[T]) validate() ! {
-	check_value := m.value.int()
+	check_value := m.value.f64()
 	mut message := m.message
 	if message.len == 0 {
 		message = 'Value must be no less than {min}.'
@@ -21,8 +21,24 @@ fn (m Min[T]) validate() ! {
 				block = m.data.$(field.name).len < check_value
 			} $else $if field.typ is int {
 				block = m.data.$(field.name) < check_value
-			} $else $if field.typ is u32 {
+			} $else $if field.typ is i8 {
+				block = m.data.$(field.name) < check_value
+			} $else $if field.typ is i16 {
+				block = m.data.$(field.name).i16() < check_value
+			} $else $if field.typ is i32 {
 				block = m.data.$(field.name).int() < check_value
+			} $else $if field.typ is i64 {
+				block = m.data.$(field.name).i64() < check_value
+			} $else $if field.typ is u8 {
+				block = m.data.$(field.name).u8() < check_value
+			} $else $if field.typ is u16 {
+				block = m.data.$(field.name).u16() < check_value
+			} $else $if field.typ is u32 {
+				block = m.data.$(field.name).u32() < check_value
+			} $else $if field.typ is u64 {
+				block = m.data.$(field.name).u64() < check_value
+			} $else {
+				return error('min no support ${field.typ}')
 			}
 		}
 	}

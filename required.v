@@ -18,7 +18,7 @@ fn (m Required[T]) validate() ! {
 		$if field.typ is string {
 			if field.name == m.field.name {
 				if m.data.$(field.name).len == 0 {
-					return error(m.field.name + ' ' + message)
+					return error(message)
 				}
 			}
 		}
